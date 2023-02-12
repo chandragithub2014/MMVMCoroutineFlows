@@ -1,5 +1,6 @@
 package com.employeeinfo.dependency
 
+import com.employeeinfo.dependency.UnsafeOkHttpClient.Companion.getUnsafeOkHttpClient
 import com.employeeinfo.network.EmployeeService
 import com.employeeinfo.network.NetworkUtil
 import com.employeeinfo.repository.EmployeeRepository
@@ -17,7 +18,7 @@ object DependencyUtils {
         HttpLoggingInterceptor.Level.BODY)
 
     private fun provideOKHttp(logger: HttpLoggingInterceptor): OkHttpClient {
-        val okHttpClient = OkHttpClient.Builder()
+        val okHttpClient = getUnsafeOkHttpClient()
 
         with(okHttpClient) {
             addInterceptor(logger)
